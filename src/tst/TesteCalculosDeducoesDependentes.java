@@ -6,10 +6,33 @@ import org.junit.Before;
 import org.junit.Test;
 
 import app.IRPF;
+import org.junit.runner.RunWith;
+import org.junit.runners.Parameterized;
 
+import java.util.Arrays;
+
+import java.util.Collection;
+
+@RunWith(Parameterized.class)
 public class TesteCalculosDeducoesDependentes {
 
-    IRPF irpf;
+    private IRPF irpf;
+    private String[] dependentes;
+    private float deducaoEsperada;
+
+    public TesteCalculosDeducoesDependentes(String[] dependentes, float deducaoEsperada){
+        this.dependentes = dependentes;
+        this.deducaoEsperada = deducaoEsperada;
+    }
+
+    @Parameterized.Parameters
+    public static Collection<Object[]> data() {
+        return Arrays.asList(new Object[][]{
+                {new String[]{"Maria da Silva"}, 189.59f},
+                {new String[]{"Maria da Silva", "Carlos da Silva"}, 379.18f},
+                {new String[]{"Maria da Silva", "Carlos da Silva", "Jose da Silva"}, 568.77f}
+        });
+    }
 
     @Before
     public void setup() {
@@ -17,24 +40,11 @@ public class TesteCalculosDeducoesDependentes {
     }
 
     @Test
-    public void testDeducao1Dependente() {
-        irpf.cadastrarDependente("Maria da Silva", "Filho");
-        assertEquals(189.59f, irpf.getDeducao(), 0.0f);
-    }
-
-    @Test
-    public void testDeducao2Dependente() {
-        irpf.cadastrarDependente("Maria da Silva", "Filho");
-        irpf.cadastrarDependente("Carlos da Silva", "Filho");
-        assertEquals(379.18f, irpf.getDeducao(), 0.0f);
-    }
-
-    @Test
-    public void testDeducao3Dependente() {
-        irpf.cadastrarDependente("Maria da Silva", "Filho");
-        irpf.cadastrarDependente("Carlos da Silva", "Filho");
-        irpf.cadastrarDependente("Jose da Silva", "Filho");
-        assertEquals(568.77f, irpf.getDeducao(), 0.0f);
+    public void testDeducaoDependentes() {
+        for (String dependente : dependentes){
+            irpf.cadastrarDependente(dependente, "Filho");
+        }
+        assertEquals(deducaoEsperada, irpf.getDeducao(), 0.0f);
     }
 
 }
