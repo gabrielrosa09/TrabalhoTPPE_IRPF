@@ -19,7 +19,7 @@ O Imposto de Renda de Pessoas Físicas (IRPF) é um imposto federal calculado co
 
 ## Primeira Entrega - TDD
 
-Para essa entrega o grupo devverá criar testes triangulados (parametrizados, preferencialmente) para cada uma das unidades mencionadas abaixo, e os testes têm que estar integrados à suíte de testes presente no arquivo AllTests.java.
+Para essa entrega o grupo deverá criar testes triangulados (parametrizados, preferencialmente) para cada uma das unidades mencionadas abaixo, e os testes têm que estar integrados à suíte de testes presente no arquivo AllTests.java.
 
 | Classe                                  | Funcionalidade                    |
 |:----------------------------------------|:----------------------------------|

@@ -40,7 +40,6 @@ public class TesteCadastroPensaoAlimenticia {
         irpf = new IRPF();
     }
 
-    
     @Test
     public void testeCadastroPensaoAlimenticia() {
     	for (int i = 0; i < dependentes.length; i++ ) {
