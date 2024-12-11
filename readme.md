@@ -16,6 +16,7 @@ O Imposto de Renda de Pessoas Físicas (IRPF) é um imposto federal calculado co
 | Gabriel da Silva Rosa | 202023681 |
 | Hellen Fernanda M. de Faria | 202016480 |
 | Lais Portela de Aguiar | 190046848 |
+| Matheus Raphael Soares de Oliveira | 190058587 |
 
 ## Primeira Entrega - TDD
 
