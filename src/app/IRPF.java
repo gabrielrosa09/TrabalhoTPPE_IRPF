@@ -294,4 +294,78 @@ public class IRPF {
 		return getTotalRendimentos() - getDeducao();
 	}
    
+	public float getImposto1aFaixa() {
+		return 0;
+	}
+   
+	public float getImposto2aFaixa() {
+		float baseDeCalculo = getBaseDeCalculo();
+		float ocupacao = 0;
+		float valor1aFaixa = 2259.21f;
+		float valor2aFaixa = 2826.65f;
+   
+		if (baseDeCalculo > valor2aFaixa) {
+			ocupacao = valor2aFaixa - valor1aFaixa;
+		} else if (
+			baseDeCalculo < valor2aFaixa && baseDeCalculo > valor1aFaixa
+		) {
+			ocupacao = baseDeCalculo - valor1aFaixa;
+		}
+		return 0.075f * ocupacao;
+	}
+   
+	public float getImposto3aFaixa() {
+		float baseDeCalculo = getBaseDeCalculo();
+		float ocupacao = 0;
+		float valor2aFaixa = 2826.66f;
+		float valor3aFaixa = 3751.05f;
+   
+		if (baseDeCalculo > valor3aFaixa) {
+			ocupacao = valor3aFaixa - valor2aFaixa;
+		} else if (
+			baseDeCalculo < valor3aFaixa && baseDeCalculo > valor2aFaixa
+		) {
+			ocupacao = baseDeCalculo - valor2aFaixa;
+		}
+		return 0.15f * ocupacao;
+	}
+   
+	public float getImposto4aFaixa() {
+		float baseDeCalculo = getBaseDeCalculo();
+		float ocupacao = 0;
+		float valor3aFaixa = 3751.06f;
+		float valor4aFaixa = 4664.68f;
+   
+		if (baseDeCalculo > valor4aFaixa) {
+			ocupacao = valor4aFaixa - valor3aFaixa;
+		} else if (
+			baseDeCalculo < valor4aFaixa && baseDeCalculo > valor3aFaixa
+		) {
+			ocupacao = baseDeCalculo - valor3aFaixa;
+		}
+		return 0.225f * ocupacao;
+	}
+   
+	public float getImposto5aFaixa() {
+		float baseDeCalculo = getBaseDeCalculo();
+		float ocupacao = 0;
+		float valor4aFaixa = 4664.68f;
+   
+		if (baseDeCalculo > valor4aFaixa) {
+			ocupacao = baseDeCalculo - valor4aFaixa;
+		}
+		return 0.275f * ocupacao;
+	}
+   
+	public float getImpostoTotal() {
+		float impostoTotal = 0;
+		impostoTotal += getImposto1aFaixa();
+		impostoTotal += getImposto2aFaixa();
+		impostoTotal += getImposto3aFaixa();
+		impostoTotal += getImposto4aFaixa();
+		impostoTotal += getImposto5aFaixa();
+   
+		return impostoTotal;
+	}
+   
 }
