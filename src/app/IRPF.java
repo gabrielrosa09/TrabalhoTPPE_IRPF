@@ -368,4 +368,7 @@ public class IRPF {
 		return impostoTotal;
 	}
    
+	public float getAliquota() {
+		return (getImpostoTotal() / getTotalRendimentos()) * 100.0f;
+	}
 }
