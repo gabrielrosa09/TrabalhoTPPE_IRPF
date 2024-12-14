@@ -10,7 +10,16 @@ import org.junit.runners.Suite.SuiteClasses;
         TesteCalculosDeducoesDependentes.class,
         TesteCadastroContribuicaoPrevidenciaria.class,
         TesteCadastroPensaoAlimenticia.class,
-        TesteCadastroOutrasDeducoes.class})
+        TesteCadastroOutrasDeducoes.class,
+        TesteBaseDeCalculo.class,
+		TesteAliquota.class,
+		TesteImpostoTotal.class,
+		TesteImposto1aFaixa.class,
+		TesteImposto2aFaixa.class,
+		TesteImposto3aFaixa.class,
+		TesteImposto4aFaixa.class,
+		TesteImposto5aFaixa.class
+})
 public class AllTests {
 
 }
