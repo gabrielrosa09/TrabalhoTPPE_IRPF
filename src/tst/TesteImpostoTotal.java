@@ -42,7 +42,7 @@ public class TesteImpostoTotal {
 
 	@Test
 	public void testImpostoTotal() {
-		irpf.criarRendimento("Salario", true, baseDeCalculo);
+		irpf.getRendimentoManager().criarRendimento("Salario", true, baseDeCalculo);
 		assertEquals(impostoEsperado, irpf.getImpostoTotal(), 0.05f);
 	}
 }

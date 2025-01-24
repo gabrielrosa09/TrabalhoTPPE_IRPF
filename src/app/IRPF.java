@@ -28,7 +28,7 @@ public class IRPF {
     }
 
     public float getImposto1aFaixa() {
-        return rendimentoManager.calcularImpostoFaixa(getBaseDeCalculo(), 0, 2259.21f, 0.075f);
+        return rendimentoManager.calcularImpostoFaixa(getBaseDeCalculo(), 0, 2259.21f, 0);
     }
 
     public float getImposto2aFaixa() {
