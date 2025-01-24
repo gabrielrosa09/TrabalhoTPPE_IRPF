@@ -11,8 +11,26 @@ class Deducao {
     }
 
     public void cadastrarDeducaoIntegral(String nome, float valorDeducao) {
-        nomesDeducoes = expandArray(nomesDeducoes, nome);
-        valoresDeducoes = expandArray(valoresDeducoes, valorDeducao);
+        nomesDeducoes = adicionarNome(nomesDeducoes, nome);
+        valoresDeducoes = adicionarValor(valoresDeducoes, valorDeducao);
+    }
+
+    private String[] adicionarNome(String[] nomesDeducoes, String nome) {
+        String[] temp = new String[nomesDeducoes.length + 1];
+        for (int i = 0; i < nomesDeducoes.length; i++) {
+            temp[i] = nomesDeducoes[i];
+        }
+        temp[nomesDeducoes.length] = nome;
+        return temp;
+    }
+
+    private float[] adicionarValor(float[] valoresDeducoes, float valorDeducao) {
+        float[] temp = new float[valoresDeducoes.length + 1];
+        for (int i = 0; i < valoresDeducoes.length; i++) {
+            temp[i] = valoresDeducoes[i];
+        }
+        temp[valoresDeducoes.length] = valorDeducao;
+        return temp;
     }
 
     public float getDeducao(Dependente dependenteManager) {
