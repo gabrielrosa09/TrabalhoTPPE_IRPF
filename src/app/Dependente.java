@@ -9,12 +9,25 @@ public class Dependente {
     public Dependente() {
         nomesDependentes = new String[0];
         parentescosDependentes = new String[0];
+        numDependentes = 0;
         totalPensaoAlimenticia = 0f;
     }
 
     public void cadastrarDependente(String nome, String parentesco) {
-        nomesDependentes = expandArray(nomesDependentes, nome);
-        parentescosDependentes = expandArray(parentescosDependentes, parentesco);
+        String[] temp = new String[nomesDependentes.length + 1];
+        for (int i=0; i<nomesDependentes.length; i++) {
+            temp[i] = nomesDependentes[i];
+        }
+        temp[nomesDependentes.length] = nome;
+        nomesDependentes = temp;
+
+        String[] temp2 = new String[parentescosDependentes.length + 1];
+        for (int i=0; i<parentescosDependentes.length; i++) {
+            temp2[i] = parentescosDependentes[i];
+        }
+        temp2[parentescosDependentes.length] = parentesco;
+        parentescosDependentes = temp2;
+
         numDependentes++;
     }
 
@@ -33,7 +46,7 @@ public class Dependente {
 
     public String getDependente(String nome) {
         for (String d : nomesDependentes) {
-            if (d.contains(nome))
+            if (d.equalsIgnoreCase(nome))
                 return d;
         }
         return null;

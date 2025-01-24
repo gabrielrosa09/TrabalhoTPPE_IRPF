@@ -19,19 +19,13 @@ import app.IRPF;
 public class TesteCadastrarDependente {
 
     private IRPF irpf;
-    private String[] dependente;
-    private String[] parentesco;
-    private int numDependentesEsperado;
-    private String[] buscarDependente;
-    private boolean dependenteExiste;
+    public String[] dependente;
+    public String[] parentesco;
+    public int numDependentesEsperado;
+    public String[] buscarDependente;
+    public boolean dependenteExiste;
 
-    public TesteCadastrarDependente(
-            String[] dependente,
-            String[] parentesco,
-            int numDependentesEsperado,
-            String[] buscarDependente,
-            boolean dependenteExiste
-    ) {
+    public TesteCadastrarDependente(String[] dependente, String[] parentesco, int numDependentesEsperado, String[] buscarDependente, boolean dependenteExiste) {
         this.dependente = dependente;
         this.parentesco = parentesco;
         this.numDependentesEsperado = numDependentesEsperado;
@@ -42,12 +36,13 @@ public class TesteCadastrarDependente {
     @Parameterized.Parameters
     public static Collection<Object[]> data() {
         return Arrays.asList(new Object[][]{
-                {new String[] {"Miguel"}, new String[] {"Filho"}, 1, new String[] {"Miguel"}, true},
+                {new String[] {"Miguel"}, new String[] {"Filho"}, 1, new String[] {""}, true},
                 {new String[] {"Miguel", "Maria"}, new String[] {"Filho", "Filho"}, 2, new String[] {"Miguel", "Maria"}, true},
                 {new String[] {"Miguel", "Maria", "Carlos"}, new String[] {"Filho", "Filho", "Filho"}, 3, new String[] {"Miguel", "Maria", "Carlos"}, true},
-                {new String[] {"Jose da Silva"}, new String[] {"Filho"}, 1, new String[] {"Jose da Silva"}, true},
-                {new String[] {"Jose da Silva", "Laura da Silva"}, new String[] {"Filho", "Filho"}, 2, new String[] {"Jose da Silva", "Laura da Silva"}, true},
-                {new String[] {}, new String[] {}, 0, new String[] {}, false}
+                {new String[] {"Jose da Silva"}, new String[] {"filho"}, 1, new String[] {"Jose"}, true},
+                {new String[] {"Jose da Silva", "Laura da Silva"}, new String[] {"filho", "filho"}, 2, new String[] {"Jose", "Laura"}, true},
+                {new String[] {}, new String[] {}, 0, new String[] {" "}, false}
+
         });
     }
 
@@ -56,8 +51,7 @@ public class TesteCadastrarDependente {
         irpf = new IRPF();
     }
 
-    @Test
-    public void testCadastroDependente() {
+    @Test public void testCadastroDependente() {
         for (int i = 0; i < dependente.length; i++) {
             irpf.getDependenteManager().cadastrarDependente(dependente[i], parentesco[i]);
             assertTrue(irpf.getDependenteManager().getParentesco(dependente[i]).equalsIgnoreCase(parentesco[i]));
@@ -79,11 +73,10 @@ public class TesteCadastrarDependente {
     public void dependenteInexistente() {
         for (String dependenteBuscado : buscarDependente) {
             String dependenteAchado = irpf.getDependenteManager().getDependente(dependenteBuscado);
-            if (dependenteExiste) {
-                assertNotNull(dependenteAchado);
-            } else {
-                assertNull(dependenteAchado);
-            }
+            assertNull(dependenteAchado);
+            String parentescoAchado = irpf.getDependenteManager().getParentesco(dependenteAchado);
+            assertNull(parentescoAchado);
         }
     }
+
 }
