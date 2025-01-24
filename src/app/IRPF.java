@@ -235,21 +235,39 @@ public class IRPF {
      * @param valorDeducao valor da deducao
      */
     public void cadastrarDeducaoIntegral(String nome, float valorDeducao) {
-        String temp[] = new String[nomesDeducoes.length + 1];
-        for (int i=0; i<nomesDeducoes.length; i++) {
+        nomesDeducoes = adicionarNome(nomesDeducoes, nome);
+        valoresDeducoes = adicionarValor(valoresDeducoes, valorDeducao);
+    }
+
+    /**
+     * Método auxiliar para adicionar um nome ao array de nomes de deduções.
+     * @param nomesDeducoes array atual de nomes de deduções
+     * @param nome novo nome a ser adicionado
+     * @return novo array com o nome adicionado
+     */
+    private String[] adicionarNome(String[] nomesDeducoes, String nome) {
+        String[] temp = new String[nomesDeducoes.length + 1];
+        for (int i = 0; i < nomesDeducoes.length; i++) {
             temp[i] = nomesDeducoes[i];
         }
         temp[nomesDeducoes.length] = nome;
-        nomesDeducoes = temp;
-
-        float temp2[] = new float[valoresDeducoes.length + 1];
-        for (int i=0; i<valoresDeducoes.length; i++) {
-            temp2[i] = valoresDeducoes[i];
-        }
-        temp2[valoresDeducoes.length] = valorDeducao;
-        valoresDeducoes = temp2;
+        return temp;
     }
 
+    /**
+     * Método auxiliar para adicionar um valor ao array de valores de deduções.
+     * @param valoresDeducoes array atual de valores de deduções
+     * @param valorDeducao novo valor a ser adicionado
+     * @return novo array com o valor adicionado
+     */
+    private float[] adicionarValor(float[] valoresDeducoes, float valorDeducao) {
+        float[] temp = new float[valoresDeducoes.length + 1];
+        for (int i = 0; i < valoresDeducoes.length; i++) {
+            temp[i] = valoresDeducoes[i];
+        }
+        temp[valoresDeducoes.length] = valorDeducao;
+        return temp;
+    }
 
     /**
      * Método para pesquisar uma deducao pelo seu nome.
