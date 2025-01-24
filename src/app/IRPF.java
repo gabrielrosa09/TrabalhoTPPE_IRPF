@@ -55,4 +55,5 @@ public class IRPF {
     public float getAliquota() {
         return (getImpostoTotal() / rendimentoManager.getTotalRendimentos()) * 100.0f;
     }
+
 }
