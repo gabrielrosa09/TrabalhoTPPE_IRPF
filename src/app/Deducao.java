@@ -1,6 +1,6 @@
 package app;
 
-class Deducao {
+public class Deducao {
     private String[] nomesDeducoes;
     private float[] valoresDeducoes;
     private float totalContribuicaoPrevidenciaria;

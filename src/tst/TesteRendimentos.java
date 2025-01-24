@@ -8,6 +8,7 @@ import org.junit.runners.Parameterized;
 import java.util.Arrays;
 import java.util.Collection;
 import app.IRPF;
+import app.Rendimento;
 
 @RunWith(Parameterized.class)
 public class TesteRendimentos {
@@ -28,10 +29,10 @@ public class TesteRendimentos {
     @Parameterized.Parameters
     public static Collection<Object[]> data() {
         return Arrays.asList(new Object[][] {
-                { new Object[][] {{"Salario", IRPF.TRIBUTAVEL, 5000f}}, 1, 5000f, 5000f },
-                { new Object[][] {{"Aluguel", IRPF.TRIBUTAVEL, 4000f}}, 1, 4000f, 4000f },
-                { new Object[][] {{"Salario", IRPF.TRIBUTAVEL, 5000f}, {"Aluguel", IRPF.TRIBUTAVEL, 4000f}}, 2, 9000f, 9000f },
-                { new Object[][] {{"Salario", IRPF.TRIBUTAVEL, 5000f}, {"Aluguel", IRPF.TRIBUTAVEL, 4000f}, {"Bolsa de pesquisa", IRPF.NAOTRIBUTAVEL, 3000f}}, 3, 12000f, 9000f }
+                { new Object[][] {{"Salario", Rendimento.TRIBUTAVEL, 5000f}}, 1, 5000f, 5000f },
+                { new Object[][] {{"Aluguel", Rendimento.TRIBUTAVEL, 4000f}}, 1, 4000f, 4000f },
+                { new Object[][] {{"Salario", Rendimento.TRIBUTAVEL, 5000f}, {"Aluguel", Rendimento.TRIBUTAVEL, 4000f}}, 2, 9000f, 9000f },
+                { new Object[][] {{"Salario", Rendimento.TRIBUTAVEL, 5000f}, {"Aluguel", Rendimento.TRIBUTAVEL, 4000f}, {"Bolsa de pesquisa", Rendimento.NAOTRIBUTAVEL, 3000f}}, 3, 12000f, 9000f }
         });
     }
 
@@ -46,11 +47,11 @@ public class TesteRendimentos {
             String nomeRendimento = (String) rendimento[0];
             boolean tributavel = (boolean) rendimento[1];
             float valor = (float) rendimento[2];
-            irpf.criarRendimento(nomeRendimento, tributavel, valor);
+            irpf.getRendimentoManager().criarRendimento(nomeRendimento, tributavel, valor);
         }
 
-        assertEquals(numRendimentosEsperado, irpf.getNumRendimentos());
-        assertEquals(totalRendimentosEsperado, irpf.getTotalRendimentos(), 0);
-        assertEquals(totalRendimentosTributaveisEsperado, irpf.getTotalRendimentosTributaveis(), 0);
+        assertEquals(numRendimentosEsperado, irpf.getRendimentoManager().getNumRendimentos());
+        assertEquals(totalRendimentosEsperado, irpf.getRendimentoManager().getTotalRendimentos(), 0);
+        assertEquals(totalRendimentosTributaveisEsperado, irpf.getRendimentoManager().getTotalRendimentosTributaveis(), 0);
     }
 }

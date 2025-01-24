@@ -40,7 +40,7 @@ public class TesteImposto2aFaixa {
 
 	@Test
 	public void testImposto2aFaixa() {
-		irpf.criarRendimento("Salario", true, baseDeCalculo);
+		irpf.getRendimentoManager().criarRendimento("Salario", true, baseDeCalculo);
 		assertEquals(impostoEsperado, irpf.getImposto2aFaixa(), 0.05f);
 	}
 }

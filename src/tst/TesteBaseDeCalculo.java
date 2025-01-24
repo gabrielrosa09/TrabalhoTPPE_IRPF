@@ -46,8 +46,8 @@ public class TesteBaseDeCalculo {
 
 	@Test
 	public void testBaseDeCalculo() {
-		irpf.criarRendimento("Salario", true, rendimentoTotal);
-		irpf.cadastrarContribuicaoPrevidenciaria(previdencia);
+		irpf.getRendimentoManager().criarRendimento("Salario", true, rendimentoTotal);
+		irpf.getDeducaoManager().cadastrarDeducaoIntegral("Previdencia", previdencia);
 		assertEquals(baseDeCalculo, irpf.getBaseDeCalculo(), 0.05f);
 	}
 }

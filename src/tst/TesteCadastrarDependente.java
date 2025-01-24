@@ -53,28 +53,28 @@ public class TesteCadastrarDependente {
     
     @Test public void testCadastroDependente() {
     	for (int i = 0; i < dependente.length; i++) { 
-    		irpf.cadastrarDependente(dependente[i], parentesco[i]);
-        	assertTrue(irpf.getParentesco(dependente[i]).equalsIgnoreCase(parentesco[i]));
+    		irpf.getDependenteManager().cadastrarDependente(dependente[i], parentesco[i]);
+        	assertTrue(irpf.getDependenteManager().getParentesco(dependente[i]).equalsIgnoreCase(parentesco[i]));
     	}
-    	assertEquals(numDependentesEsperado, irpf.getNumDependentes());
+    	assertEquals(numDependentesEsperado, irpf.getDependenteManager().getNumDependentes());
     }
     
     @Test
     public void obterDependente() {
     	for (int i = 0; i < dependente.length; i++) {
-    		irpf.cadastrarDependente(dependente[i], parentesco[i]);
-    		String dependenteAchado = irpf.getDependente(buscarDependente[i]);
+    		irpf.getDependenteManager().cadastrarDependente(dependente[i], parentesco[i]);
+    		String dependenteAchado = irpf.getDependenteManager().getDependente(buscarDependente[i]);
     		assertNotNull(dependenteAchado);
-    		assertTrue(irpf.getParentesco(dependenteAchado).equalsIgnoreCase(parentesco[i]));
+    		assertTrue(irpf.getDependenteManager().getParentesco(dependenteAchado).equalsIgnoreCase(parentesco[i]));
     	}
     }
     
     @Test
     public void dependenteInexistente() {
         for (String dependenteBuscado : buscarDependente) {
-            String dependenteAchado = irpf.getDependente(dependenteBuscado);
+            String dependenteAchado = irpf.getDependenteManager().getDependente(dependenteBuscado);
             assertNull(dependenteAchado);
-            String parentescoAchado = irpf.getParentesco(dependenteAchado);
+            String parentescoAchado = irpf.getDependenteManager().getParentesco(dependenteAchado);
             assertNull(parentescoAchado);
         }
     }

@@ -42,7 +42,7 @@ public class TesteCalculosDeducoesDependentes {
     @Test
     public void testDeducaoDependentes() {
         for (String dependente : dependentes){
-            irpf.cadastrarDependente(dependente, "Filho");
+            irpf.getDependenteManager().cadastrarDependente(dependente, "Filho");
         }
         assertEquals(deducaoEsperada, irpf.getDeducao(), 0.0f);
     }

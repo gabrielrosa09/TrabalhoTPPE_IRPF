@@ -59,7 +59,7 @@ public class TesteCadastroOutrasDeducoes {
     @Test
     public void testCadastroOutrasDeducoes() {
         for (int i = 0; i < deducoes.length; i++) {
-            irpf.cadastrarDeducaoIntegral(deducoes[i], valores[i]);
+            irpf.getDeducaoManager().cadastrarDeducaoIntegral(deducoes[i], valores[i]);
         }
 
         if (valorEsperadoConsulta == null) {

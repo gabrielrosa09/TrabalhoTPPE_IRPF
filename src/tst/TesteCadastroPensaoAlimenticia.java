@@ -43,9 +43,9 @@ public class TesteCadastroPensaoAlimenticia {
     @Test
     public void testeCadastroPensaoAlimenticia() {
     	for (int i = 0; i < dependentes.length; i++ ) {
-    		irpf.cadastrarDependente(dependentes[i], parentesco[i]);
-    		irpf.cadastrarPensaoAlimenticia(dependentes[i], 1000f);
+    		irpf.getDependenteManager().cadastrarDependente(dependentes[i], parentesco[i]);
+    		irpf.getDependenteManager().cadastrarPensaoAlimenticia(dependentes[i], 1000f);
     	}
-    	assertEquals(pensaoEsperada, irpf.getTotalPensaoAlimenticia(), 0f);
+    	assertEquals(pensaoEsperada, irpf.getDependenteManager().getTotalPensaoAlimenticia(), 0f);
     }
 }

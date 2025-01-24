@@ -1,11 +1,13 @@
 package app;
 
-class Rendimento {
+public class Rendimento {
     private String[] nomeRendimento;
     private boolean[] rendimentoTributavel;
     private float[] valorRendimento;
     private int numRendimentos;
     private float totalRendimentos;
+    public static final boolean TRIBUTAVEL = true;
+    public static final boolean NAOTRIBUTAVEL = false;
 
     public Rendimento() {
         nomeRendimento = new String[0];

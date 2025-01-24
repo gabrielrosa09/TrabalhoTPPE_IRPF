@@ -46,8 +46,8 @@ public class TesteAliquota {
 
 	@Test
 	public void testAliquota() {
-		irpf.criarRendimento("Salario", true, rendimentoTotal);
-		irpf.cadastrarContribuicaoPrevidenciaria(previdencia);
+		irpf.getRendimentoManager().criarRendimento("Salario", true, rendimentoTotal);
+		irpf.getDeducaoManager().cadastrarContribuicaoPrevidenciaria(previdencia);
 		assertEquals(aliquotaEsperada, irpf.getAliquota(), 0.05f);
 	}
 }
