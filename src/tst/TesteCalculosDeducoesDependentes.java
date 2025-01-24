@@ -44,7 +44,7 @@ public class TesteCalculosDeducoesDependentes {
         for (String dependente : dependentes){
             irpf.getDependenteManager().cadastrarDependente(dependente, "Filho");
         }
-        assertEquals(deducaoEsperada, irpf.getDeducaoManager().getDeducao(), 0.0f);
+        assertEquals(deducaoEsperada, irpf.getDeducaoManager().getDeducao(irpf.getDependenteManager()), 0.0f);
     }
 
 }
