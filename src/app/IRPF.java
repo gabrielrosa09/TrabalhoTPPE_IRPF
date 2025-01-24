@@ -1,6 +1,9 @@
 package app;
 
 public class IRPF {
+    public static final boolean TRIBUTAVEL = true;
+    public static final boolean NAOTRIBUTAVEL = false;
+
     private Rendimento rendimentoManager;
     private Dependente dependenteManager;
     private Deducao deducaoManager;
@@ -29,7 +32,7 @@ public class IRPF {
     }
 
     public float getImposto1aFaixa() {
-        return rendimentoManager.calcularImpostoFaixa(getBaseDeCalculo(), 0, 2259.21f, 0.075f);
+        return rendimentoManager.calcularImpostoFaixa(getBaseDeCalculo(), 0, 0, 0);
     }
 
     public float getImposto3aFaixa() {

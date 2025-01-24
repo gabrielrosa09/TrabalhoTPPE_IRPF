@@ -19,9 +19,9 @@ public class TesteAliquota {
 	private float aliquotaEsperada;
 
 	public TesteAliquota(
-		float rendimentoTotal,
-		float previdencia,
-		float aliquotaEsperada
+			float rendimentoTotal,
+			float previdencia,
+			float aliquotaEsperada
 	) {
 		this.rendimentoTotal = rendimentoTotal;
 		this.previdencia = previdencia;
@@ -31,11 +31,11 @@ public class TesteAliquota {
 	@Parameterized.Parameters
 	public static Collection<Object[]> data() {
 		return Arrays.asList(
-			new Object[][] {
-				{ 2000.0f, 100.0f, 0f },
-				{ 5000.0f, 1250.0f, 3.62f },
-				{ 10000.0f, 3189.59f, 9.77f },
-			}
+				new Object[][] {
+						{ 2000.0f, 100.0f, 0f },
+						{ 5000.0f, 1250.0f, 3.62f },
+						{ 10000.0f, 3189.59f, 9.77f },
+				}
 		);
 	}
 
@@ -46,8 +46,11 @@ public class TesteAliquota {
 
 	@Test
 	public void testAliquota() {
-		irpf.criarRendimento("Salario", true, rendimentoTotal);
-		irpf.cadastrarContribuicaoPrevidenciaria(previdencia);
+		irpf.getRendimentoManager().criarRendimento("Salario", true, rendimentoTotal);
+		
+		irpf.getDeducaoManager().cadastrarDeducaoIntegral("Contribuição Previdenciária", previdencia);
+		
 		assertEquals(aliquotaEsperada, irpf.getAliquota(), 0.05f);
 	}
 }
+

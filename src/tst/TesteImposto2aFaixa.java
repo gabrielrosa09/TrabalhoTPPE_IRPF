@@ -2,6 +2,7 @@ package tst;
 
 import static org.junit.Assert.assertEquals;
 
+import app.GetImposto2aFaixa;
 import app.IRPF;
 import java.util.Arrays;
 import java.util.Collection;
@@ -24,13 +25,11 @@ public class TesteImposto2aFaixa {
 
 	@Parameterized.Parameters
 	public static Collection<Object[]> data() {
-		return Arrays.asList(
-			new Object[][] {
-				{ 2820.0f, 42.06f }, // 	2a faixa
-				{ 2650.0f, 29.31f }, // 	2a faixa
-				{ 2260.0f, 0.06f }, // 	2a faixa
-			}
-		);
+		return Arrays.asList(new Object[][] {
+				{ 2820.0f, 42.06f }, // 2a faixa
+				{ 2650.0f, 29.31f }, // 2a faixa
+				{ 2260.0f, 0.06f },  // 2a faixa
+		});
 	}
 
 	@Before
@@ -40,7 +39,8 @@ public class TesteImposto2aFaixa {
 
 	@Test
 	public void testImposto2aFaixa() {
-		irpf.criarRendimento("Salario", true, baseDeCalculo);
-		assertEquals(impostoEsperado, irpf.getImposto2aFaixa(), 0.05f);
+		irpf.getRendimentoManager().criarRendimento("Salario", IRPF.TRIBUTAVEL, baseDeCalculo);
+		float impostoCalculado = new GetImposto2aFaixa(irpf).valor();
+		assertEquals(impostoEsperado, impostoCalculado, 0.05f);
 	}
 }

@@ -1,13 +1,17 @@
 package app;
 
-class Deducao {
+public class Deducao {
     private String[] nomesDeducoes;
     private float[] valoresDeducoes;
     private float totalContribuicaoPrevidenciaria;
+    private int numContribuicaoPrevidenciaria;
+    Dependente dependente;
 
     public Deducao() {
         nomesDeducoes = new String[0];
         valoresDeducoes = new float[0];
+        numContribuicaoPrevidenciaria = 0;
+        totalContribuicaoPrevidenciaria = 0f;
     }
 
     public void cadastrarDeducaoIntegral(String nome, float valorDeducao) {
@@ -42,15 +46,46 @@ class Deducao {
         return total;
     }
 
-    private String[] expandArray(String[] array, String value) {
-        String[] temp = java.util.Arrays.copyOf(array, array.length + 1);
-        temp[array.length] = value;
-        return temp;
+    public int getNumContribuicoesPrevidenciarias() {
+        return numContribuicaoPrevidenciaria;
     }
 
-    private float[] expandArray(float[] array, float value) {
-        float[] temp = java.util.Arrays.copyOf(array, array.length + 1);
-        temp[array.length] = value;
-        return temp;
+    public float getTotalContribuicoesPrevidenciarias() {
+        return totalContribuicaoPrevidenciaria;
     }
+
+    public String getOutrasDeducoes(String nome) {
+        for (String d : nomesDeducoes) {
+            if (d.toLowerCase().contains(nome.toLowerCase()))
+                return d;
+        }
+        return null;
+    }
+
+    public float getDeducao(String nome) {
+        for (int i=0; i<nomesDeducoes.length; i++) {
+            if (nomesDeducoes[i].toLowerCase().contains(nome.toLowerCase()))
+                return valoresDeducoes[i];
+        }
+        return 0;
+    }
+
+    public float getTotalOutrasDeducoes() {
+        float soma = 0;
+        for (float f : valoresDeducoes) {
+            soma += f;
+        }
+        return soma;
+    }
+
+    public float getDeducao() {
+        float total = 0;
+        for (String d: dependente.getNomesDependentes()) {
+            total += 189.59f;
+        }
+        total += totalContribuicaoPrevidenciaria;
+
+        return total;
+    }
+
 }

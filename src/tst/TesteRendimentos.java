@@ -46,11 +46,11 @@ public class TesteRendimentos {
             String nomeRendimento = (String) rendimento[0];
             boolean tributavel = (boolean) rendimento[1];
             float valor = (float) rendimento[2];
-            irpf.criarRendimento(nomeRendimento, tributavel, valor);
+            irpf.getRendimentoManager().criarRendimento(nomeRendimento, tributavel, valor);
         }
 
-        assertEquals(numRendimentosEsperado, irpf.getNumRendimentos());
-        assertEquals(totalRendimentosEsperado, irpf.getTotalRendimentos(), 0);
-        assertEquals(totalRendimentosTributaveisEsperado, irpf.getTotalRendimentosTributaveis(), 0);
+        assertEquals(numRendimentosEsperado, irpf.getRendimentoManager().getNumRendimentos());
+        assertEquals(totalRendimentosEsperado, irpf.getRendimentoManager().getTotalRendimentos(), 0);
+        assertEquals(totalRendimentosTributaveisEsperado, irpf.getRendimentoManager().getTotalRendimentosTributaveis(), 0);
     }
 }

@@ -1,6 +1,6 @@
 package app;
 
-class Rendimento {
+public class Rendimento {
     private String[] nomeRendimento;
     private boolean[] rendimentoTributavel;
     private float[] valorRendimento;

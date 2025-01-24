@@ -15,27 +15,27 @@ public class TesteBaseDeCalculo {
 
 	private IRPF irpf;
 	private float rendimentoTotal;
-	private float baseDeCalculo;
+	private float baseDeCalculoEsperada;
 	private float previdencia;
 
 	public TesteBaseDeCalculo(
-		float rendimentoTotal,
-		float baseDeCalculo,
-		float previdencia
+			float rendimentoTotal,
+			float baseDeCalculoEsperada,
+			float previdencia
 	) {
 		this.rendimentoTotal = rendimentoTotal;
-		this.baseDeCalculo = baseDeCalculo;
+		this.baseDeCalculoEsperada = baseDeCalculoEsperada;
 		this.previdencia = previdencia;
 	}
 
 	@Parameterized.Parameters
 	public static Collection<Object[]> data() {
 		return Arrays.asList(
-			new Object[][] {
-				{ 2000.0f, 2000.0f, 0f },
-				{ 5000.0f, 4800.0f, 200.0f },
-				{ 10000.0f, 6900.0f, 3100.0f },
-			}
+				new Object[][] {
+						{ 2000.0f, 2000.0f, 0f },
+						{ 5000.0f, 4800.0f, 200.0f },
+						{ 10000.0f, 6900.0f, 3100.0f },
+				}
 		);
 	}
 
@@ -46,8 +46,11 @@ public class TesteBaseDeCalculo {
 
 	@Test
 	public void testBaseDeCalculo() {
-		irpf.criarRendimento("Salario", true, rendimentoTotal);
-		irpf.cadastrarContribuicaoPrevidenciaria(previdencia);
-		assertEquals(baseDeCalculo, irpf.getBaseDeCalculo(), 0.05f);
+		irpf.getRendimentoManager().criarRendimento("Salario", true, rendimentoTotal);
+
+		irpf.getDeducaoManager().cadastrarDeducaoIntegral("Contribuição Previdenciária", previdencia);
+
+		assertEquals(baseDeCalculoEsperada, irpf.getBaseDeCalculo(), 0.05f);
 	}
 }
+

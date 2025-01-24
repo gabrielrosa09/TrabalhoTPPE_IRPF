@@ -12,15 +12,19 @@ import java.util.Collection;
 @RunWith(Parameterized.class)
 public class TesteCadastroContribuicaoPrevidenciaria {
 
-    IRPF irpf;
+    private IRPF irpf;
     private final int[] contribuicoes;
-    private final int numcontribuicoesEsperadas;
-    private float totalcontribuicoesEsperadas;
+    private final int numContribuicoesEsperadas;
+    private final float totalContribuicoesEsperadas;
 
-    public TesteCadastroContribuicaoPrevidenciaria(int[] contribuicoes, int numcontribuicoesEsperadas, float totalcontribuicoesEsperadas) {
+    public TesteCadastroContribuicaoPrevidenciaria(
+            int[] contribuicoes,
+            int numContribuicoesEsperadas,
+            float totalContribuicoesEsperadas
+    ) {
         this.contribuicoes = contribuicoes;
-        this.numcontribuicoesEsperadas = numcontribuicoesEsperadas;
-        this.totalcontribuicoesEsperadas = totalcontribuicoesEsperadas;
+        this.numContribuicoesEsperadas = numContribuicoesEsperadas;
+        this.totalContribuicoesEsperadas = totalContribuicoesEsperadas;
     }
 
     @Parameterized.Parameters
@@ -39,11 +43,15 @@ public class TesteCadastroContribuicaoPrevidenciaria {
 
     @Test
     public void testCadastroContribuicoesPrevidenciarias() {
+
         for (int contribuicao : contribuicoes) {
-            irpf.cadastrarContribuicaoPrevidenciaria(contribuicao);
+            irpf.getDeducaoManager().cadastrarDeducaoIntegral("Contribuição Previdenciária", contribuicao);
         }
-        assertEquals(numcontribuicoesEsperadas, irpf.getNumContribuicoesPrevidenciarias());
-        assertEquals(totalcontribuicoesEsperadas, irpf.getTotalContribuicoesPrevidenciarias(), 0f);
-        assertEquals(totalcontribuicoesEsperadas, irpf.getDeducao(), 0f);
+
+        assertEquals(numContribuicoesEsperadas, irpf.getDeducaoManager().getNumContribuicoesPrevidenciarias());
+        assertEquals(totalContribuicoesEsperadas, irpf.getDeducaoManager().getTotalContribuicoesPrevidenciarias(), 0f);
+
+        assertEquals(totalContribuicoesEsperadas, irpf.getDeducaoManager().getDeducao(irpf.getDependenteManager()), 0f);
     }
 }
+
