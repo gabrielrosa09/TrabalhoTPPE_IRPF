@@ -5,7 +5,7 @@ public class Deducao {
     private float[] valoresDeducoes;
     private float totalContribuicaoPrevidenciaria;
     private int numContribuicaoPrevidenciaria;
-    Dependente dependente;
+    Dependente dependente = new Dependente();
 
     public Deducao() {
         nomesDeducoes = new String[0];
@@ -35,6 +35,11 @@ public class Deducao {
         }
         temp[valoresDeducoes.length] = valorDeducao;
         return temp;
+    }
+
+    public void cadastrarContribuicaoPrevidenciaria(float contribuicao) {
+        numContribuicaoPrevidenciaria++;
+        totalContribuicaoPrevidenciaria += contribuicao;
     }
 
     public float getDeducao(Dependente dependenteManager) {

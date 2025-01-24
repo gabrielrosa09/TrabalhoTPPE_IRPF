@@ -45,13 +45,13 @@ public class TesteCadastroContribuicaoPrevidenciaria {
     public void testCadastroContribuicoesPrevidenciarias() {
 
         for (int contribuicao : contribuicoes) {
-            irpf.getDeducaoManager().cadastrarDeducaoIntegral("Contribuição Previdenciária", contribuicao);
+            irpf.getDeducaoManager().cadastrarContribuicaoPrevidenciaria(contribuicao);
         }
 
         assertEquals(numContribuicoesEsperadas, irpf.getDeducaoManager().getNumContribuicoesPrevidenciarias());
         assertEquals(totalContribuicoesEsperadas, irpf.getDeducaoManager().getTotalContribuicoesPrevidenciarias(), 0f);
 
-        assertEquals(totalContribuicoesEsperadas, irpf.getDeducaoManager().getDeducao(irpf.getDependenteManager()), 0f);
+        assertEquals(totalContribuicoesEsperadas, irpf.getDeducaoManager().getDeducao(), 0f);
     }
 }
 
